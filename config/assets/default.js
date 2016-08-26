@@ -5,7 +5,9 @@ module.exports = {
     lib: {
       css: [
         'public/lib/bootstrap/dist/css/bootstrap.css',
-        'public/lib/bootstrap/dist/css/bootstrap-theme.css'
+        'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+        //'public/vendor/uswds/css/uswds.css',
+        'public/lib/angular-ui-select/dist/select.min.css'
       ],
       js: [
         'public/lib/angular/angular.js',
@@ -16,7 +18,11 @@ module.exports = {
         'public/lib/angular-ui-utils/ui-utils.js',
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'public/lib/angular-file-upload/angular-file-upload.js',
-        'public/lib/owasp-password-strength-test/owasp-password-strength-test.js'
+        'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
+        //'public/vendor/uswds/js/uswds.js',
+        'public/lib/angular-ui-select/dist/select.min.js',
+        'public/lib/highcharts/highcharts.js',
+        'public/vendor/highcharts/highcharts-ng.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },

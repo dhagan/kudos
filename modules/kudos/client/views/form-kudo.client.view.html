@@ -4,20 +4,94 @@
   </div>
   <div class="col-md-12">
     <form name="vm.form.kudoForm" class="form-horizontal" ng-submit="vm.save(vm.form.kudoForm.$valid)" novalidate>
-      <fieldset>
-        <div class="form-group" show-errors>
-          <label class="control-label" for="name">Name</label>
-          <input name="name" type="text" ng-model="vm.kudo.name" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.kudoForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Kudo name is required.</p>
-          </div>
+
+      <div class="form-group" show-errors>
+        <label for="description">Description</label>
+        <input name="description" type="text" ng-model="vm.kudo.description" id="description" class="form-control"
+               placeholder="Description" required>
+
+        <div ng-messages="vm.form.kudoForm.description.$error" role="alert">
+          <p class="help-block error-text" ng-message="required">Kudo description is required.</p>
         </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-default">{{vm.kudo._id ? 'Update' : 'Create'}}</button>
+      </div>
+      <div class="form-group" show-errors>
+        <label for="type">Type</label>
+
+        <div>
+          <ui-select name="type" id="type" ng-model="vm.kudo.type" theme="bootstrap" close-on-select="false" style="width: 300px;"
+                     title="Choose a leader">
+            <ui-select-match placeholder="Select a type...">{{vm.kudo.type}}</ui-select-match>
+            <ui-select-choices repeat="kudo_type in vm.kudoTypes | filter:$select.search">
+                <span class="label label-pill"
+                      ng-class="vm.getBadgeStyle($index)">{{kudo_type | limitTo : 1 : 0}}</span>
+              {{kudo_type}}
+            </ui-select-choices>
+          </ui-select>
         </div>
-        <div ng-show="vm.error" class="text-danger">
-          <strong ng-bind="vm.error"></strong>
+      </div>
+      <div class="form-group" show-errors>
+        <label for="award">Award</label>
+
+        <div>
+          <ui-select name="award" id="award" ng-model="vm.kudo.award" theme="bootstrap" close-on-select="false"
+                     style="width: 300px;" title="Choose a leader">
+            <ui-select-match placeholder="Select a award...">{{vm.kudo.award}}</ui-select-match>
+            <ui-select-choices repeat="kudo_award in vm.kudoAwards | filter:$select.search">
+                <span class="label label-pill"
+                      ng-class="vm.getBadgeStyle($index)">{{kudo_award | limitTo : 1 : 0}}</span>
+              {{kudo_award}}
+
+            </ui-select-choices>
+          </ui-select>
         </div>
+      </div>
+      <div class="form-group" show-errors>
+        <label for="points">Points</label>
+
+        <div>
+
+          <ui-select name="points" id="points" ng-model="vm.kudo.points" theme="bootstrap" close-on-select="false"
+                     style="width: 300px;" title="Choose a leader">
+            <ui-select-match placeholder="Select a points...">{{vm.kudo.points}}</ui-select-match>
+            <ui-select-choices repeat="kudo_points in vm.kudoPoints | filter:$select.search">
+              {{kudo_points}}
+            </ui-select-choices>
+          </ui-select>
+        </div>
+      </div>
+      <div class="form-group" show-errors>
+        <label for="recipient">Recipient-individual</label>
+
+        <div>
+          <ui-select name="recipient" id="recipient" ng-model="vm.kudo.recipient" theme="bootstrap"  close-on-select="false" style="width: 300px;" title="Choose a recipient">
+            <ui-select-match placeholder="Select recipient...">{{vm.kudo.recipient.displayName}}</ui-select-match>
+            <ui-select-choices repeat="user in vm.users | filter:$select.search">
+              <img ng-src="{{ user.profileImageURL }}" class="header-profile-image" />
+              {{user.displayName}}
+            </ui-select-choices>
+          </ui-select>
+        </div>
+      </div>
+      <div class="form-group" show-errors>
+        <label for="recipient_team">Recipient-team</label>
+
+        <div>
+          <ui-select name="recipient" id="recipient" ng-model="vm.kudo.recipient" theme="bootstrap"  close-on-select="false" style="width: 300px;" title="Choose a recipient">
+            <ui-select-match placeholder="Select recipient...">{{vm.kudo.recipient.displayName}}</ui-select-match>
+            <ui-select-choices repeat="team in vm.teams | filter:$select.search">
+               <span class="label label-pill"
+                     ng-class="vm.getBadgeStyle($index)">{{team.name | limitTo : 1 : 0}}</span>
+              {{team.name}}
+            </ui-select-choices>
+          </ui-select>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-default">{{vm.kudo._id ? 'Update' : 'Create'}}</button>
+      </div>
+      <div ng-show="vm.error" class="text-danger">
+        <strong ng-bind="vm.error"></strong>
+      </div>
       </fieldset>
     </form>
   </div>

@@ -2,8 +2,21 @@
   <div class="jumbotron text-center">
     <div class="row">
       <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-        <img alt="BITS" class="img-responsive text-center" src="modules/core/client/img/brand/logo.png" />
+        <img alt="BITS" class="img-responsive text-center" src="modules/core/client/img/brand/logo.png"/>
       </div>
     </div>
+  </div>
+  <div ng-controller="HighChartsController">
+    <div class="span12">
+      <input ng-model="chartConfig.title.text">
+      <button ng-click="addSeries()">Add Series</button>
+      <button ng-click="addPoints()">Add Points to Random Series</button>
+      <button ng-click="removeRandomSeries()">Remove Random Series</button>
+      <button ng-click="swapChartType()">Line/Bar</button>
+      <button ng-click="toggleLoading()">Loading?</button>
     </div>
+    <div class="row">
+      <highchart id="chart1" config="chartConfig" class="span10"></highchart>
+    </div>
+  </div>
 </section>

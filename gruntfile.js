@@ -20,9 +20,11 @@ module.exports = function (grunt) {
       },
       dev: {
         NODE_ENV: 'development'
+        //MONGOHQ_URL: 'mongodb://54.227.191.12'
       },
       prod: {
-        NODE_ENV: 'production'
+        NODE_ENV: 'production',
+        MONGOHQ_URL: 'mongodb://54.227.191.12'
       }
     },
     watch: {

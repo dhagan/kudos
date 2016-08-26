@@ -14,12 +14,23 @@
   </div>
   <small>
     <em class="text-muted">
+      Type:
+      <span data-ng-bind="vm.kudo.type"></span>
+      Award:
+      <span data-ng-bind="vm.kudo.award"></span>
+      Points:
+      <span data-ng-bind="vm.kudo.points"></span>
       Posted on
       <span data-ng-bind="vm.kudo.created | date:'mediumDate'"></span>
       by
-      <span data-ng-if="vm.kudo.user"
-            data-ng-bind="vm.kudo.user.displayName"></span>
-      <span data-ng-if="!vm.kudo.user">Deleted User</span>
+      <span data-ng-if="vm.kudo.author" data-ng-bind="vm.kudo.author.displayName"></span>
+      <span data-ng-if="!vm.kudo.author">Deleted User</span>
+      for
+      <span data-ng-if="vm.kudo.recipient" data-ng-bind="vm.kudo.recipient.displayName"></span>
+      <span data-ng-if="vm.kudo.recipient" data-ng-bind="vm.kudo.recipient_team.name">Team:</span>
+      <span data-ng-if="!vm.kudo.recipient">Deleted User</span>
+
+  <h4 class="list-group-item-heading" data-ng-bind="vm.kudo.description"></h4>
     </em>
   </small>
   <p class="lead" data-ng-bind="vm.kudo.content"></p>

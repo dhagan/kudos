@@ -12,16 +12,32 @@ acl = new acl(new acl.memoryBackend());
  * Invoke Admin Permissions
  */
 exports.invokeRolesPolicies = function () {
-  acl.allow([{
-    roles: ['admin'],
-    allows: [{
-      resources: '/api/users',
-      permissions: '*'
-    }, {
-      resources: '/api/users/:userId',
-      permissions: '*'
-    }]
-  }]);
+  acl.allow([
+    {
+      roles: ['admin'],
+      allows: [{
+        resources: '/api/users',
+        permissions: '*'
+      }, {
+        resources: '/api/users/:userId',
+        permissions: '*'
+      }]
+    },
+
+    // DJH 8/17/ open this up to all logged in users
+    {
+      roles: ['user'],
+      allows: [{
+        resources: '/api/users',
+        permissions: ['get']
+      }, {
+        resources: '/api/users/:userId',
+        permissions: ['get']
+      }]
+    }
+
+
+  ]);
 };
 
 /**

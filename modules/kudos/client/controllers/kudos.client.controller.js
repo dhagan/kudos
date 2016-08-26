@@ -6,9 +6,9 @@
     .module('kudos')
     .controller('KudosController', KudosController);
 
-  KudosController.$inject = ['$scope', '$state', 'Authentication', 'kudoResolve'];
+  KudosController.$inject = ['$scope', '$state', 'Authentication', 'kudoResolve', 'Users', 'TeamsService'];
 
-  function KudosController ($scope, $state, Authentication, kudo) {
+  function KudosController($scope, $state, Authentication, kudo, Users, TeamsService) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -17,6 +17,58 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+    vm.users = getUsers();
+    vm.teams = TeamsService.query();
+
+    vm.kudoTypes = [
+      'bold',
+      'genuine',
+      'supportive',
+      'candid',
+      'globally aware',
+      'reliable',
+      'dedicated',
+      'speedy',
+      'innovative'
+    ];
+
+    vm.kudoAwards = [
+      'blue star',
+      'good job',
+      'impressive',
+      'excellent'
+    ];
+    vm.kudoPoints = [
+      5,25,50,100,200,300,400,500,1000
+    ];
+
+    var badgeClass = [
+      'label-default',
+      'label-primary',
+      'label-success',
+      'label-info',
+      'label-warning',
+      'label-danger'
+    ];
+
+    vm.getBadgeStyle = function(index) {
+      return badgeClass[index%6];
+    };
+
+    function getUsers() {
+      return Users.query();
+    }
+
+    //function getUsers() {
+    //  Users.get().$promise.then(function (value) {
+    //      // vm.error = value.body + " created";
+    //      vm.error = value.fileName + " created";
+    //      console.log(value);
+    //    }, function (error) {
+    //      debugger;
+    //      vm.error = error.data.message;
+    //    });
+    //}
 
     // Remove existing Kudo
     function remove() {

@@ -7,13 +7,23 @@
        data-ui-sref="kudos.view({ kudoId: kudo._id })"
        class="list-group-item">
       <small class="list-group-item-text">
+        Type:
+        <span data-ng-bind="kudo.type"></span>
+        Award:
+        <span data-ng-bind="kudo.award"></span>
+        Points:
+        <span data-ng-bind="kudo.points"></span>
         Posted on
         <span data-ng-bind="kudo.created | date:'mediumDate'"></span>
         by
-        <span data-ng-if="kudo.user" data-ng-bind="kudo.user.displayName"></span>
-        <span data-ng-if="!kudo.user">Deleted User</span>
+        <span data-ng-if="kudo.author" data-ng-bind="kudo.author.displayName"></span>
+        <span data-ng-if="!kudo.author">Deleted User</span>
+        for
+        <span data-ng-if="kudo.recipient" data-ng-bind="kudo.recipient.displayName"></span>
+        <span data-ng-if="kudo.recipient_team" data-ng-bind="kudo.recipient_team.name"></span>
+        <span data-ng-if="!kudo.recipient">Deleted User</span>
       </small>
-      <h4 class="list-group-item-heading" data-ng-bind="kudo.name"></h4>
+      <h4 class="list-group-item-heading" data-ng-bind="kudo.description"></h4>
     </a>
   </div>
   <div class="alert alert-warning text-center" data-ng-if="vm.kudos.$resolved && !vm.kudos.length">

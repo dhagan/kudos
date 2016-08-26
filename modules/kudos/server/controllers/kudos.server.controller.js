@@ -14,7 +14,7 @@ var path = require('path'),
  */
 exports.create = function(req, res) {
   var kudo = new Kudo(req.body);
-  kudo.user = req.user;
+  kudo.author = req.user;
 
   kudo.save(function(err) {
     if (err) {
@@ -81,7 +81,7 @@ exports.delete = function(req, res) {
  * List of Kudos
  */
 exports.list = function(req, res) { 
-  Kudo.find().sort('-created').populate('user', 'displayName').exec(function(err, kudos) {
+  Kudo.find().sort('-created').populate('author', 'displayName').populate('recipient', 'displayName').exec(function(err, kudos) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -103,7 +103,7 @@ exports.kudoByID = function(req, res, next, id) {
     });
   }
 
-  Kudo.findById(id).populate('user', 'displayName').exec(function (err, kudo) {
+  Kudo.findById(id).populate('author', 'displayName').populate('recipient', 'displayName').exec(function (err, kudo) {
     if (err) {
       return next(err);
     } else if (!kudo) {

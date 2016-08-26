@@ -6,6 +6,10 @@ module.exports = {
       css: [
         'public/lib/bootstrap/dist/css/bootstrap.min.css',
         'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
+        //'public/vendor/uswds/css/uswds.min.css'
+        'public/vendor/ui-select/css/select.min.css',
+        'public/vendor/select2/select2.css',
+        'public/lib/angular-ui-select/dist/select.min.css'
       ],
       js: [
         'public/lib/angular/angular.min.js',
@@ -16,7 +20,9 @@ module.exports = {
         'public/lib/angular-ui-utils/ui-utils.min.js',
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
         'public/lib/angular-file-upload/angular-file-upload.min.js',
-        'public/lib/owasp-password-strength-test/owasp-password-strength-test.js'
+        'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
+        //'public/vendor/uswds/js/uswds.min.js',
+        'public/lib/angular-ui-select/dist/select.min.js'
       ]
     },
     css: 'public/dist/application.min.css',
