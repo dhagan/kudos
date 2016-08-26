@@ -1,0 +1,64 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.team._id ? 'Edit Team' : 'New Team'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.teamForm" class="form-horizontal" ng-submit="vm.save(vm.form.teamForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label for="name">Name</label>
+          <input name="name" type="text" ng-model="vm.team.name" id="name" class="form-control"
+                 placeholder="name" required>
+
+          <div ng-messages="vm.form.teamForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">team name is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="organization">Organization</label>
+
+          <div>
+            <ui-select id="organization" ng-model="vm.team.organization" theme="bootstrap"  close-on-select="false" style="width: 300px;" title="Choose a organization">
+              <ui-select-match placeholder="Select organization...">{{vm.team.organization.name}}</ui-select-match>
+              <ui-select-choices repeat="organization in vm.organizations | filter:$select.search">
+                <img ng-src="{{ organization.profileImageURL }}" style="height: 50px; width: 50px;" />
+                {{organization.name}}
+              </ui-select-choices>
+            </ui-select>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="leader">Leader</label>
+          <div>
+            <ui-select id="leader" ng-model="vm.team.leader" theme="bootstrap"  close-on-select="false" style="width: 300px;" title="Choose a leader">
+              <ui-select-match placeholder="Select leader...">{{vm.team.leader.displayName}}</ui-select-match>
+              <ui-select-choices repeat="user in vm.users | filter:$select.search">
+                <img ng-src="{{ user.profileImageURL }}" class="header-profile-image" />
+                {{user.displayName}}
+              </ui-select-choices>
+            </ui-select>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="members">Members</label>
+          <ui-select id="members" multiple ng-model="vm.team.members" theme="bootstrap"  close-on-select="false" style="width: 300px;" title="Choose a member">
+            <ui-select-match placeholder="Select members...">{{$item.displayName}}</ui-select-match>
+            <ui-select-choices repeat="user in vm.users | filter:$select.search">
+              <img ng-src="{{ user.profileImageURL }}" class="header-profile-image" />
+              {{user.displayName}}
+            </ui-select-choices>
+          </ui-select>
+          <!-- debug
+          <p>Selected: {{vm.team.members}}</p>
+          -->
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.team._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

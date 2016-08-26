@@ -1,0 +1,36 @@
+<section>
+  <div class="page-header">
+    <h1>Analytics</h1>
+  </div>
+  <div class="list-group">
+    <a data-ng-repeat="analytic in vm.analytics"
+       data-ui-sref="analytics.view({ analyticId: analytic._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span data-ng-bind="analytic.created | date:'mediumDate'"></span>
+        by
+        <span data-ng-if="analytic.user" data-ng-bind="analytic.user.displayName"></span>
+        <span data-ng-if="!analytic.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" data-ng-bind="analytic.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" data-ng-if="vm.analytics.$resolved && !vm.analytics.length">
+    No Analytics yet, why don't you <a data-ui-sref="analytics.create">create one</a>?
+  </div>
+  <div ng-controller="HighChartsController">
+    <div class="span12">
+      <input ng-model="chartConfig.title.text">
+      <button ng-click="addSeries()">Add Series</button>
+      <button ng-click="addPoints()">Add Points to Random Series</button>
+      <button ng-click="removeRandomSeries()">Remove Random Series</button>
+      <button ng-click="swapChartType()">Line/Bar</button>
+      <button ng-click="toggleLoading()">Loading?</button>
+    </div>
+    <div class="row">
+      <highchart id="chart1" config="chartConfig" class="span10"></highchart>
+    </div>
+  </div>
+
+</section>

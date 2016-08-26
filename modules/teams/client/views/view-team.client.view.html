@@ -1,0 +1,39 @@
+<section>
+  <div class="page-header">
+    <h1 data-ng-bind="vm.team.name"></h1>
+  </div>
+  <table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+      <th>name</th>
+      <th>organization</th>
+      <th>leader</th>
+      <th>members</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>{{vm.team.name}}</td>
+      <td>{{vm.team.organization.name}}</td>
+      <td>{{vm.team.leader.displayName}}</td>
+      <td>
+        <span ng-repeat="members in vm.team.members">
+            {{member.displayName}}{{$last ? '' : ($index==team.members.length-2) ? ' and ' : ', '}}
+                    </span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="pull-right"
+       data-ng-show="true">
+    todo - show only if 'vm.team.isCurrentUserOwner'
+    <a class="btn btn-primary"
+       data-ui-sref="teams.edit({ teamId: vm.team._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" data-ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+</section>
